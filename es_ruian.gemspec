@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ispa_ruian/version'
+require 'es_ruian/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ispa_ruian"
-  spec.version       = IspaRuian::VERSION
+  spec.name          = "es_ruian"
+  spec.version       = EsRuian::VERSION
   spec.authors       = ["iQuest Jan Schejbal"]
   spec.email         = ["schejbal@iquest.cz"]
 
   spec.summary       = %q{Client for ISPAliance RUIAN}
   spec.description   = %q{Client for ISPAliance RUIAN}
-  spec.homepage      = "http://github.com/iquest/ispa_ruian"
+  spec.homepage      = "http://github.com/iquest/es_ruian"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_runtime_dependency 'curb', '~> 0.9'
 
-  
 
-  
+
+
 end

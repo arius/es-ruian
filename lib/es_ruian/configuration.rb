@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'singleton'
 
-module IspaRuian
+module EsRuian
 
   class Configuration
 
@@ -27,10 +27,9 @@ module IspaRuian
       end
 
       def set_defaults
-        @api_url = 'http://ruian.ispa.cz/api'
+        @api_url = 'http://lvh.me:5000/api'
+        # @api_url = 'http://ruian.ispa.cz/api'
       end
-
     end
   end
-
 end

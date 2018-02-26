@@ -1,6 +1,6 @@
-# IspaRuian
+# EsRuian
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ispa_ruian`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/es_ruian`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
 
@@ -9,7 +9,7 @@ TODO: Delete this and the text above, and describe your gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ispa_ruian'
+gem 'es_ruian'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ispa_ruian
+    $ gem install es_ruian
 
 ## Usage
 
@@ -38,4 +38,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
