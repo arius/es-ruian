@@ -12,8 +12,9 @@ module EsRuian
     end
 
     def self.post(params, post_data, options = {})
+      type = options.delete(:type)
       connector = Connector.new(params, options)
-      connector.post post_data
+      connector.post(post_data, type)
     end
 
 
@@ -34,8 +35,10 @@ module EsRuian
       raise e
     end
 
-    def post(post_data)
-      @curl.http_post(post_data.to_json) do |curl|
+    def post(post_data, type)
+      hash = build_post_hash(post_data, type)
+
+      @curl.http_post({ data: hash }) do |curl|
         curl = set_headers(curl)
       end
       parse_response
@@ -69,9 +72,17 @@ module EsRuian
 
     def build_url(params, options)
       options.merge!(expanded: 1)
-      encoded_uri = URI.encode(([Configuration.api_url] + params).flatten.compact.join("/") + "?" + options.to_query)
+      encoded_uri = URI.encode(([Configuration.api_url] + params).flatten.compact.join("/"))
       p encoded_uri
       return encoded_uri
+    end
+
+    def build_post_hash(attributes, type)
+      p attributes
+      hash = {
+        type: type,
+        attributes: attributes
+      }
     end
 
     def parse_response
@@ -79,7 +90,7 @@ module EsRuian
 
         @parsed_response = ::JSON.parse @curl.body
         @data = @parsed_response["data"]
-        p @data
+
         return @data
         raise "No items found" if @data.blank?
       else

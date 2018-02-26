@@ -19,11 +19,9 @@ module EsRuian
 
     #http://ruian.ispa.cz/api/addresses/by-codes
     def self.by_codes(*codes)
+      p codes
       method_name = "by_codes"
-      hash = {
-        codes: codes
-      }
-      response = Connector.post([@model_name, method_name], hash, type: @model_type)
+      response = Connector.post([@model_name, method_name], { codes: codes }, type: @model_type)
     end
 
     #http://ruian.ispa.cz/api/addresses/by_municipality/565709
