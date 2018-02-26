@@ -18,12 +18,13 @@ module EsRuian
 
 
     def initialize(params, options={})
-      build_curl(params, options)
+      @params = params
+      @options = options
     end
 
 
     def get
-      @curl.http_get do |curl|
+      @curl = Curl.get(build_url) do
         curl = set_headers(curl)
       end
       parse_response
@@ -35,9 +36,11 @@ module EsRuian
     end
 
     def post(post_data)
-      @curl.http_post(post_data.to_json) do |curl|
-        curl = set_headers(curl)
+      @curl = Curl.post(build_url, post_data.to_json) do |curl|
+        curl.headers['Accept'] = 'application/json'
+        curl.headers['Content-Type'] = 'application/vnd.api+json'
       end
+      
       parse_response
       close_curl
       return @data
@@ -49,7 +52,7 @@ module EsRuian
     private
 
     def close_curl
-      @curl.close
+      @curl.try :close
       @curl = nil
       GC.start
     end
@@ -60,17 +63,10 @@ module EsRuian
       curl
     end
 
-    def build_curl(params, options)
-      @curl = Curl::Easy.new(build_url(params, options))
-      @curl.http_auth_types = :basic
-      @curl.username = EsRuian::Configuration.login
-      @curl.password = EsRuian::Configuration.password
-    end
+    def build_url
+      @options.merge!(expanded: 1)
+      encoded_uri = URI.encode(([Configuration.api_url] + @params).flatten.compact.join("/") + "?" + @options.to_query)
 
-    def build_url(params, options)
-      options.merge!(expanded: 1)
-      encoded_uri = URI.encode(([Configuration.api_url] + params).flatten.compact.join("/") + "?" + options.to_query)
-      p encoded_uri
       return encoded_uri
     end
 

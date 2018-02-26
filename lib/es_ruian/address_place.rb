@@ -3,7 +3,7 @@ module EsRuian
 
   class AddressPlace
     @model_name = "addresses"
-    @model_type = "address_place"
+    @model_type = "AddressPlace"
 
     # curl -X GET -H "Content-Type: application/vnd.api+json" http://ruian.ispa.cz/api/addresses/by_municipality/565709 -v
     # curl -X GET -H "Content-Type: application/vnd.api+json" http://ruian.ispa.cz/api/addresses/by_municipality_part/50784 -v
