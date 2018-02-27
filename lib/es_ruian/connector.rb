@@ -24,8 +24,9 @@ module EsRuian
 
 
     def get
-      @curl = Curl.get(build_url) do
-        curl = set_headers(curl)
+      @curl = Curl.get(build_url) do |curl|
+        curl.headers['Accept'] = 'application/json'
+        curl.headers['Content-Type'] = 'application/json'
       end
       parse_response
       close_curl
@@ -38,9 +39,9 @@ module EsRuian
     def post(post_data)
       @curl = Curl.post(build_url, post_data.to_json) do |curl|
         curl.headers['Accept'] = 'application/json'
-        curl.headers['Content-Type'] = 'application/vnd.api+json'
+        curl.headers['Content-Type'] = 'application/json'
       end
-      
+
       parse_response
       close_curl
       return @data
@@ -59,7 +60,7 @@ module EsRuian
 
     def set_headers(curl)
       curl.headers['Accept'] = 'application/json'
-      curl.headers['Content-Type'] = 'application/vnd.api+json'
+      curl.headers['Content-Type'] = 'application/json'
       curl
     end
 
