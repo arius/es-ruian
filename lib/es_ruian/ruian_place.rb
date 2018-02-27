@@ -1,28 +1,25 @@
 # -*- encoding : utf-8 -*-
 module EsRuian
-
   class RuianPlace < OpenStruct
 
-    def parse_gps
-      (gpsPoint || gps_point).gsub("(", "").gsub(")", "").split(",")
-    end
+    # def parse_gps
+    #   (gpsPoint || gps_point).gsub("(", "").gsub(")", "").split(",")
+    # end
 
     def gps
-      [latitude, longitude]
+      gps
     end
 
     def latitude
-      parse_gps.first
+      gps[0]
     end
 
     def longitude
-      parse_gps.last
+      gps[1]
     end
 
     def ruian_code
-      code
+      id
     end
-
   end
-
 end

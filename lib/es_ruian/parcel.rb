@@ -10,7 +10,7 @@ module EsRuian
       response = Connector.get([@model_name, method_name, code], options)
     end
 
-    # http://ruian.ispa.cz/api/search/by_circle/50.2399336/16.5188739/1000
+    # http://ruian.ispa.cz/api/search/by_circle/50.2399336/16.5188739/1000?kind=parcel
     # EsRuian::Parcel.by_circle(48.9955900658021, 16.7245099565193, 0.1)
     def self.by_circle(latitude, longitude, radius, options = {})
       method_name = 'by_circle'

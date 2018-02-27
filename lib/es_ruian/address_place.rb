@@ -53,5 +53,20 @@ module EsRuian
       method_name = "by_municipality_part"
       response = Connector.get([@model_name, method_name, code])
     end
+
+    # http://ruian.ispa.cz/api/search/by_circle/50.2399336/16.5188739/1000?kind=address
+    # EsRuian::AddressPlace.by_circle(48.9955900658021, 16.7245099565193, 0.1)
+    def self.by_circle(latitude, longitude, radius, options = {})
+      method_name = 'by_circle'
+      options[:kind] = 'address'
+      response = Connector.get(['search', method_name, latitude, longitude, radius], options)
+    end
+
+    # http://ruian.ispa.cz/api/search/by_polygon
+    # EsRuian::AddressPlace.by_polygon(49.83673269054116, 14.878281170088316, 49.837077845263984, 14.877046036780422, 49.83628715293106, 14.877263743487353)
+    def self.by_polygon(*data)
+      method_name = 'by_polygon'
+      response = Connector.post(['search', method_name], { points: data, kind: 'address' })
+    end
   end
 end

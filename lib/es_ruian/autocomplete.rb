@@ -1,56 +1,54 @@
 # -*- encoding : utf-8 -*-
 module EsRuian
-
   class Autocomplete
+    # @model_name = "address-register-autocomplete"
+    @model_name = "search"
 
-    @model_name = "address-register-autocomplete"
-    # @model_name = "search"
-
-    #http://ruian.ispa.cz/api/address-register-autocomplete/municipalities-with-parts-by-filter/Hol
+    # http://ruian.ispa.cz/api/search/municipality_parts/Hol
+    # EsRuian::Autocomplete.municipalities_with_parts_by_filter('Hol')
     def self.municipalities_with_parts_by_filter(filter_param)
-      method_name = "municipalities-with-parts-by-filter"
+      method_name = "municipality_parts"
       response = Connector.get([@model_name, method_name, filter_param])
     end
 
-    #http://ruian.ispa.cz/api/address-register-autocomplete/districts-by-filter/Pardub
+    # http://ruian.ispa.cz/api/search/districts/Pardub
+    # EsRuian::Autocomplete.districts_by_filter('Pard')
     def self.districts_by_filter(filter_param)
-      method_name = "districts-by-filter"
+      method_name = "districts"
       response = Connector.get([@model_name, method_name, filter_param])
     end
 
-    #http://ruian.ispa.cz/api/address-register-autocomplete/streets-by-filter/574988/Staroholická
+    # http://ruian.ispa.cz/api/search/streets_by_municipality/535419/Adiny%20Mandlové
+    # EsRuian::Autocomplete.streets_by_filter(535419, 'Adiny')
     def self.streets_by_filter(city_code, filter_param)
-      method_name = "streets-by-filter"
+      method_name = "streets_by_municipality"
       response = Connector.get([@model_name, method_name, city_code, filter_param])
     end
 
-    #http://ruian.ispa.cz/api/address-register-autocomplete/streets-by-part-of-city-filter/410471/Vyso
+    # http://ruian.ispa.cz/api/search/streets_by_municipality_part/96610/HRUBINOVA
+    # EsRuian::Autocomplete.streets_by_part_of_city_filter(96610, 'HRUBINOVA')
     def self.streets_by_part_of_city_filter(part_of_city_code, filter_param)
-      method_name = "streets-by-part-of-city-filter"
+      method_name = "streets_by_municipality_part"
       response = Connector.get([@model_name, method_name, part_of_city_code, filter_param])
     end
 
-    #http://ruian.ispa.cz/api/address-register-autocomplete/house-numbers-by-street-code/370410
+    # http://ruian.ispa.cz/api/addresses/by_street/370410
     def self.house_numbers_by_street_code(street_code)
-      method_name = "house-numbers-by-street-code"
-      response = Connector.get([@model_name, method_name, street_code])
+      model_name = "addresses"
+      method_name = "by_street"
+      response = Connector.get([model_name, method_name, street_code])
     end
 
-    #http://ruian.ispa.cz/api/address-register-autocomplete/house-numbers-without-street-by-city-code/574988
+    # http://ruian.ispa.cz/api/search/addresses_without_street_by_municipality_code/574988
     def self.house_numbers_without_street_by_city_code(city_code)
-      # method_name = "addresses_without_street_by_municipality_code"
-      # response = Connector.get([@model_name, method_name, city_code])
-      method_name = "house-numbers-without-street-by-city-code"
+      method_name = "addresses_without_street_by_municipality_code"
       response = Connector.get([@model_name, method_name, city_code])
     end
 
-    #http://ruian.ispa.cz/api/address-register-autocomplete/house-numbers-without-street-by-part-of-city-code/410471
+    # http://ruian.ispa.cz/api/search/addresses_without_street_by_municipality_part_code/410471
     def self.house_numbers_without_street_by_part_of_city_code(part_city_code)
-      method_name = "house-numbers-without-street-by-part-of-city-code"
+      method_name = "addresses_without_street_by_municipality_part_code"
       response = Connector.get([@model_name, method_name, part_city_code])
     end
-
-
   end
-
 end

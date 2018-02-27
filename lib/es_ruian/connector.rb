@@ -3,7 +3,6 @@ require 'net/http'
 require 'uri'
 
 module EsRuian
-
   class Connector
 
     def self.get(params, options = {})
@@ -16,16 +15,14 @@ module EsRuian
       connector.post post_data
     end
 
-
     def initialize(params, options={})
       @params = params
       @options = options
     end
 
-
     def get
       @curl = Curl.get(build_url) do |curl|
-        curl.headers['Accept'] = 'application/json'
+        curl.headers['Accept'] = 'application/vnd.api+json'
         curl.headers['Content-Type'] = 'application/json'
       end
       parse_response
@@ -37,8 +34,9 @@ module EsRuian
     end
 
     def post(post_data)
+      p post_data
       @curl = Curl.post(build_url, post_data.to_json) do |curl|
-        curl.headers['Accept'] = 'application/json'
+        curl.headers['Accept'] = 'application/vnd.api+json'
         curl.headers['Content-Type'] = 'application/json'
       end
 
@@ -59,7 +57,7 @@ module EsRuian
     end
 
     def set_headers(curl)
-      curl.headers['Accept'] = 'application/json'
+      curl.headers['Accept'] = 'application/vnd.api+json'
       curl.headers['Content-Type'] = 'application/json'
       curl
     end
@@ -76,9 +74,14 @@ module EsRuian
 
         @parsed_response = ::JSON.parse @curl.body
         @data = @parsed_response["data"]
-        p @data
-        return @data
-        raise "No items found" if @data.blank?
+
+        if @data.blank?
+          return @data
+          raise "No items found"
+        else
+          @data = @data.map { |res| res["attributes"] }
+          return @data
+        end
       else
         curl_status = @curl.status
         raise curl_status
