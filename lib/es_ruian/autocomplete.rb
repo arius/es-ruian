@@ -33,16 +33,16 @@ module EsRuian
     end
 
     # http://ruian.ispa.cz/api/addresses/by_street/370410
-    def self.house_numbers_by_street_code(street_code)
+    def self.house_numbers_by_street_code(street_code, filter_param)
       model_name = "addresses"
       method_name = "by_street"
-      response = Connector.get([model_name, method_name, street_code])
+      response = Connector.get([model_name, method_name, street_code, filter_param])
     end
 
     # http://ruian.ispa.cz/api/search/addresses_without_street_by_municipality_code/574988
-    def self.house_numbers_without_street_by_city_code(city_code)
+    def self.house_numbers_without_street_by_city_code(city_code, filter_param)
       method_name = "addresses_without_street_by_municipality_code"
-      response = Connector.get([@model_name, method_name, city_code])
+      response = Connector.get([@model_name, method_name, city_code, filter_param])
     end
 
     # http://ruian.ispa.cz/api/search/addresses_without_street_by_municipality_part_code/410471

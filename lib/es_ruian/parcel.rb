@@ -15,14 +15,14 @@ module EsRuian
     def self.by_circle(latitude, longitude, radius, options = {})
       method_name = 'by_circle'
       options[:kind] = 'parcel'
-      response = Connector.get(['search', method_name, latitude, longitude, radius], options)
+      response = Connector.get([@model_name, method_name, latitude, longitude, radius], options)
     end
 
     # http://ruian.ispa.cz/api/search/by_polygon
     # EsRuian::Parcel.by_polygon(49.83673269054116, 14.878281170088316, 49.837077845263984, 14.877046036780422, 49.83628715293106, 14.877263743487353)
     def self.by_polygon(*data)
       method_name = 'by_polygon'
-      response = Connector.post(['search', method_name], { points: data, kind: 'parcel' })
+      response = Connector.post([@model_name, method_name], data )
     end
 
     # http://ruian.ispa.cz/api/parcels/by_cadastral_area_and_parcel_number/600083/1
