@@ -20,11 +20,9 @@ module EsRuian
 
     #http://ruian.eurosignal.cz/api/address-register-search/by-fulltext/Holice, Vysokomýtská 289
     def self.by_fulltext(filter_param, options = {})
-      method_name = "by-fulltext"
+      method_name = "by_fulltext"
 
       array_path = [@model_name, method_name, filter_param]
-      array_path << options[:limit] if options[:limit]
-      options.delete(:limit)
 
       response = Connector.get(array_path, options)
     end
