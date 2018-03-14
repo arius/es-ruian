@@ -27,8 +27,7 @@ module EsRuian
       end
 
       def set_defaults
-        @api_url = 'http://localhost:4000/api'
-       # @api_url = 'http://ruian.eurosignal.cz/api'
+        @api_url = 'http://ruian.eurosignal.cz/api'
       end
     end
   end

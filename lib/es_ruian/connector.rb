@@ -34,7 +34,6 @@ module EsRuian
     end
 
     def post(post_data)
-      p post_data
       @curl = Curl.post(build_url, post_data.to_json) do |curl|
         curl.headers['Accept'] = 'application/vnd.api+json'
         curl.headers['Content-Type'] = 'application/json'
@@ -64,7 +63,6 @@ module EsRuian
 
     def build_url
       encoded_uri = URI.encode(([Configuration.api_url] + @params).flatten.compact.join("/") + "?" + @options.to_query)
-      p encoded_uri
       return encoded_uri
     end
 
