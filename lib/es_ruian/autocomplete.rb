@@ -4,6 +4,13 @@ module EsRuian
     # @model_name = "address-register-autocomplete"
     @model_name = "search"
 
+    # http://ruian.eurosignal.cz/api/search/municipalities/Brn
+    # EsRuian::Autocomplete.municipalities_by_filter('Brn')
+    def self.municipalities_by_filter(filter_param)
+      method_name = "municipalities"
+      response = Connector.get([@model_name, method_name, filter_param])
+    end
+
     # http://ruian.eurosignal.cz/api/search/municipality_parts/Hol
     # EsRuian::Autocomplete.municipalities_with_parts_by_filter('Hol')
     def self.municipalities_with_parts_by_filter(filter_param)
