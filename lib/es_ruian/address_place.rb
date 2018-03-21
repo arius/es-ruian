@@ -53,6 +53,16 @@ module EsRuian
       method_name = "by_municipality_part"
       response = Connector.get([@model_name, method_name, code])
     end
+    
+    def self.by_street_code_and_house_numbers(street_code, house_numbers)
+      method_name = "by_street_code_and_house_numbers"
+      response = Connector.get([@model_name, method_name, street_code, house_numbers])
+    end
+    
+    def self.by_municipality_code_and_house_numbers(municipality_code, house_numbers)
+      method_name = "by_municipality_code_and_house_numbers"
+      response = Connector.get([@model_name, method_name, municipality_code, house_numbers])
+    end
 
     # http://ruian.eurosignal.cz/api/search/by_circle/50.2399336/16.5188739/1000?kind=address
     # EsRuian::AddressPlace.by_circle(48.9955900658021, 16.7245099565193, 0.1)
