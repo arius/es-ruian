@@ -62,7 +62,8 @@ module EsRuian
     end
 
     def build_url
-      encoded_uri = URI.encode(([Configuration.api_url] + @params).flatten.compact.join("/") + "?" + @options.to_query)
+      parser = URI::Parser.new
+      encoded_uri = parser.escape(([Configuration.api_url] + @params).flatten.compact.join("/") + "?" + @options.to_query)
       return encoded_uri
     end
 
