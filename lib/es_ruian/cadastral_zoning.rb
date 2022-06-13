@@ -9,5 +9,10 @@ module EsRuian
       method_name = 'by_gps'
       response = Connector.get([@model_name, method_name, latitude, longitude], options)
     end
+    
+    def self.by_name(name, options = {})
+      method_name = 'by_name'
+      response = Connector.get([@model_name, method_name, name], options)
+    end
   end
 end
