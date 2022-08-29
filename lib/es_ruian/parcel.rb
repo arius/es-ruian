@@ -31,5 +31,12 @@ module EsRuian
       method_name = 'by_cadastral_zoning_and_parcel_number'
       response = Connector.get([@model_name, method_name, cadastral_area_code, parcel_number], options)
     end
+    
+    def self.by_fulltext(cadastral_area_code, parcel_number, options = {})
+      method_name = 'by_fulltext'
+      response = Connector.get([@model_name, method_name, cadastral_area_code, parcel_number], options )
+    end
+    
+    
   end
 end
