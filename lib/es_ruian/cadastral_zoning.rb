@@ -14,5 +14,11 @@ module EsRuian
       method_name = 'by_name'
       response = Connector.get([@model_name, method_name, name], options)
     end
+    
+    def self.by_code(name, options = {})
+      method_name = 'by_code'
+      response = Connector.get([@model_name, method_name, name], options)
+    end
+    
   end
 end
