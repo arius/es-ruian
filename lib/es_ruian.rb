@@ -6,6 +6,7 @@ require 'json'
 require "es_ruian/address_place"
 require "es_ruian/autocomplete"
 require "es_ruian/cadastral_zoning"
+require "es_ruian/administrative_division"
 require "es_ruian/configuration"
 require "es_ruian/connector"
 require "es_ruian/parcel"
