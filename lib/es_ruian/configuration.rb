@@ -8,7 +8,7 @@ module EsRuian
     include Singleton
 
     class << self
-      attr_accessor :login, :password, :api_url
+      attr_accessor :login, :password, :api_url, :refresh_poll_interval_seconds, :refresh_timeout_seconds
 
       def configure(file_path = nil)
         set_defaults
@@ -27,7 +27,9 @@ module EsRuian
       end
 
       def set_defaults
-        @api_url = 'https://ruian.eurosignal.cz/api'
+        @api_url = ENV.fetch("RUIAN_API_BASE_URL", "https://ruian.eurosignal.cz/api")
+        @refresh_poll_interval_seconds = ENV.fetch("RUIAN_REFRESH_POLL_INTERVAL_SECONDS", "10").to_i
+        @refresh_timeout_seconds = ENV.fetch("RUIAN_REFRESH_TIMEOUT_SECONDS", "1800").to_i
       end
     end
   end
